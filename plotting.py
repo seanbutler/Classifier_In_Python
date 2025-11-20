@@ -245,12 +245,19 @@ Min Loss: {min(loss_history):.4f}
         # Add timestamp to filename
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
         base_filename = output_config['plot_filename']
+        
+        # Use study output directory if available, otherwise use default
+        if 'study_output_dir' in config:
+            plot_dir = f"{config['study_output_dir']}/plots"
+        else:
+            plot_dir = "outputs/plots"
+        
         # Split filename and extension
         if '.' in base_filename:
             name, ext = base_filename.rsplit('.', 1)
-            timestamped_filename = f"{name}_{timestamp}.{ext}"
+            timestamped_filename = f"{plot_dir}/{name}_{timestamp}.{ext}"
         else:
-            timestamped_filename = f"{base_filename}_{timestamp}"
+            timestamped_filename = f"{plot_dir}/{base_filename}_{timestamp}"
         
         plt.savefig(timestamped_filename, dpi=300, bbox_inches='tight')
         print(f"\nEnhanced training metrics saved as '{timestamped_filename}'")

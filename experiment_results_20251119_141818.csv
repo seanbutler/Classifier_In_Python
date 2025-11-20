@@ -1,6 +1,0 @@
-experiment_name,hidden_layers,learning_rate,batch_size,momentum,epochs,final_test_accuracy,final_validation_accuracy,best_test_accuracy,best_validation_accuracy,final_loss,min_loss
-baseline,"[64, 32]",0.001,64,0.9,32,96.59,96.31,96.59,96.31,0.0771,0.0770
-arch_widest_1,"[512, 128, 64]",0.001,128,0.9,32,96.34,96.03,96.34,96.03,0.0997,0.0972
-arch_widest_2,"[512, 128, 64]",0.001,64,0.9,32,97.35,97.30,97.45,97.42,0.0375,0.0325
-arch_deeper_1,"[64, 32, 16]",0.001,128,0.9,32,95.89,95.60,95.89,95.60,0.1243,0.1213
-arch_deeper_2,"[64, 32, 16]",0.001,64,0.9,32,96.49,96.38,96.66,96.38,0.0666,0.0559

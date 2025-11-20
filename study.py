@@ -3,6 +3,7 @@ Study class for organizing and running experiment studies
 """
 
 import csv
+import os
 from datetime import datetime
 from config_manager import load_config, update_config, save_config
 from experiment import run_experiment
@@ -29,6 +30,12 @@ class Study:
         self.experiments = []
         self.results = []
         self.timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        
+        # Create study-specific output directory
+        self.output_dir = f'outputs/{self.name}_{self.timestamp}'
+        os.makedirs(f'{self.output_dir}/plots', exist_ok=True)
+        os.makedirs(f'{self.output_dir}/configs', exist_ok=True)
+        os.makedirs(f'{self.output_dir}/results', exist_ok=True)
         
     def add_experiment(self, name, **params):
         """
@@ -85,9 +92,12 @@ class Study:
             # Update config with experiment parameters
             config = update_config(config, **params_copy)
             
+            # Pass study output directory to experiment
+            config['study_output_dir'] = self.output_dir
+            
             # Save this experiment's config if requested
             if save_configs:
-                save_config(config, f'config_{self.name}_{exp_name}.json')
+                save_config(config, f'{self.output_dir}/configs/config_{exp_name}.json')
             
             # Run the experiment
             if verbose:
@@ -105,7 +115,7 @@ class Study:
         
         # Save results to CSV
         if save_results and self.results:
-            csv_filename = f'study_{self.name}_{self.timestamp}.csv'
+            csv_filename = f'{self.output_dir}/results/study_{self.name}.csv'
             self._save_to_csv(csv_filename)
             if verbose:
                 print(f"\nResults saved to: {csv_filename}")
@@ -258,11 +268,22 @@ if __name__ == "__main__":
     )
     
     # Add experiments
-    study.add_experiment('baseline', hidden_layers=[64, 32], learning_rate=0.001, batch_size=64, epochs=10)
-    study.add_experiment('wider', hidden_layers=[128, 64], learning_rate=0.001, batch_size=64, epochs=10)
-    study.add_experiment('deeper', hidden_layers=[64, 32, 16], learning_rate=0.001, batch_size=64, epochs=10)
-    study.add_experiment('single', hidden_layers=[128], learning_rate=0.001, batch_size=64, epochs=10)
-    
+    # study.add_experiment('baseline', hidden_layers=[64, 32], learning_rate=0.001, batch_size=64, epochs=10)
+    # study.add_experiment('wider', hidden_layers=[128, 64], learning_rate=0.001, batch_size=64, epochs=10)
+    # study.add_experiment('deeper', hidden_layers=[64, 32, 16], learning_rate=0.001, batch_size=64, epochs=10)
+    # study.add_experiment('single', hidden_layers=[128], learning_rate=0.001, batch_size=64, epochs=10)
+
+    # study.add_experiment('batch16', hidden_layers=[64, 32], learning_rate=0.001, batch_size=16, epochs=20)
+    # study.add_experiment('batch32', hidden_layers=[64, 32], learning_rate=0.001, batch_size=32, epochs=20)
+    # study.add_experiment('batch64', hidden_layers=[64, 32], learning_rate=0.001, batch_size=64, epochs=20)
+    # study.add_experiment('batch128', hidden_layers=[64, 32], learning_rate=0.001, batch_size=128, epochs=20)
+
+    study.add_experiment('batch16', hidden_layers=[64, 32], learning_rate=0.001, batch_size=16, epochs=20)
+    study.add_experiment('batch32', hidden_layers=[64, 32], learning_rate=0.001, batch_size=32, epochs=20)
+    study.add_experiment('batch64', hidden_layers=[64, 32], learning_rate=0.001, batch_size=64, epochs=20)
+    study.add_experiment('batch128', hidden_layers=[64, 32], learning_rate=0.001, batch_size=128, epochs=20)
+
+
     # Or add multiple at once
     # additional_experiments = [
     #     {'name': 'tiny', 'hidden_layers': [32], 'learning_rate': 0.001, 'batch_size': 64, 'epochs': 10},
