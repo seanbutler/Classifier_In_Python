@@ -1,0 +1,5 @@
+experiment_name,hidden_layers,learning_rate,batch_size,momentum,epochs,final_test_accuracy,final_validation_accuracy,best_test_accuracy,best_validation_accuracy,final_loss,min_loss
+architecture_comparison_layers_1,[32],0.001,64,0.9,35,95.71,95.47,95.71,95.47,0.1481,0.1235
+architecture_comparison_layers_2,"[32, 32]",0.001,64,0.9,35,96.19,95.62,96.21,95.81,0.1082,0.0992
+architecture_comparison_layers_3,"[32, 32, 32]",0.001,64,0.9,35,96.09,95.76,96.09,96.05,0.0919,0.0881
+architecture_comparison_layers_4,"[32, 32, 32, 32]",0.001,64,0.9,35,96.02,95.78,96.24,96.08,0.0923,0.0760

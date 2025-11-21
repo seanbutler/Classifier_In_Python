@@ -8,7 +8,7 @@
 
 A modular neural network training framework (currently targeting MNIST digit classification) with experiment management and comprehensive visualization.
 
-![Training Dashboard](training_metrics_baseline_20251120_105925.png)
+![Training Dashboard](training_metrics_example.png)
 
 *Example training visualization dashboard showing loss curves, accuracy metrics, weight distributions, and learned digit patterns*
 

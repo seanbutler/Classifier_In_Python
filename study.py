@@ -278,11 +278,10 @@ if __name__ == "__main__":
     # study.add_experiment('batch64', hidden_layers=[64, 32], learning_rate=0.001, batch_size=64, epochs=20)
     # study.add_experiment('batch128', hidden_layers=[64, 32], learning_rate=0.001, batch_size=128, epochs=20)
 
-    study.add_experiment('batch16', hidden_layers=[64, 32], learning_rate=0.001, batch_size=16, epochs=20)
-    study.add_experiment('batch32', hidden_layers=[64, 32], learning_rate=0.001, batch_size=32, epochs=20)
-    study.add_experiment('batch64', hidden_layers=[64, 32], learning_rate=0.001, batch_size=64, epochs=20)
-    study.add_experiment('batch128', hidden_layers=[64, 32], learning_rate=0.001, batch_size=128, epochs=20)
-
+    study.add_experiment('layers_1', hidden_layers=[32], learning_rate=0.001, batch_size=64, epochs=35)
+    study.add_experiment('layers_2', hidden_layers=[32, 32], learning_rate=0.001, batch_size=64, epochs=35)
+    study.add_experiment('layers_3', hidden_layers=[32, 32, 32], learning_rate=0.001, batch_size=64, epochs=35)
+    study.add_experiment('layers_4', hidden_layers=[32, 32, 32, 32], learning_rate=0.001, batch_size=64, epochs=35)
 
     # Or add multiple at once
     # additional_experiments = [

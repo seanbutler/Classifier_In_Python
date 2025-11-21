@@ -1,0 +1,31 @@
+{
+  "model": {
+    "input_size": 784,
+    "hidden_layers": [
+      32,
+      32
+    ],
+    "output_size": 10
+  },
+  "training": {
+    "epochs": 35,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "momentum": 0.9,
+    "log_interval": 100
+  },
+  "data": {
+    "data_root": "./data",
+    "normalize_mean": 0.5,
+    "normalize_std": 0.5,
+    "test_batch_size": 100,
+    "shuffle_train": true,
+    "shuffle_test": false
+  },
+  "output": {
+    "save_plot": true,
+    "plot_filename": "training_metrics.png",
+    "show_plot": false
+  },
+  "study_output_dir": "outputs/architecture_comparison_20251120_225243"
+}
